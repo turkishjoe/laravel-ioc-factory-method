@@ -30,11 +30,11 @@ class SenderFactory
      * @param User $user
      * @param string $message
      */
-    public function get(User $user, string $message){
+    public function send(User $user, string $message){
         /**
          * @var SenderInterface $sender
          */
-        $sender = $this->serviceClosureCollection->get($user->providerType)();
+        $sender = $this->serviceClosureCollection->get($user->provider)();
 
         $sender->send($user, $message);
     }
