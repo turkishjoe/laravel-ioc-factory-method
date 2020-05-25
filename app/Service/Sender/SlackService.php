@@ -14,14 +14,14 @@ class SlackService implements SenderInterface
 {
     public function send(User $user, string $message)
     {
-        $client = \JoliCode\Slack\ClientFactory::create($user->notificationKey);
+        $client = \JoliCode\Slack\ClientFactory::create($user->providerKey);
 
         $messageObject = new ObjsMessage();
         $messageObject->setText($message);
 
         $client->chatPostMessage([
             'text'=>$message,
-            'channel'=>'general'
+            'channel'=>$user->chatId
         ]);
     }
 
